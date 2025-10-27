@@ -70,59 +70,6 @@ That object becomes the semantic input for the pictogram compiler, ensuring tran
 
 A complete formal definition is provided in [pictonet-nlu-1.0.schema.json](pictonet-nlu-1.0.schema.json).
 
-⸻
-
-🧪 Validation & Development
-
-1. Install dependencies
-
-npm i -D ajv ajv-formats glob
-
-2. Validate test cases
-
-node test-runner.js
-
-3. Expected output
-
-VALID: 1/1 correct
-INVALID: 4/4 correct
-
-Exit code 0 indicates all validations behaved as expected.
-
-⸻
-
-📦 TypeScript Support
-
-Type definitions are provided in
-types/pictonet-nlu.d.ts:
-
-import type { PictoNetNLU } from "./types/pictonet-nlu.d";
-
-const doc: PictoNetNLU = {
-  utterance: "Open the window",
-  lang: "en",
-  frames: [
-    { frame_name: "Directed_action", lexical_unit: "open", roles: { Agent: { type: "Addressee", ref: "you" } } }
-  ],
-  logical_form: { event: "open(you, window)" }
-};
-
-
-⸻
-
-🧰 Folder Layout
-
-nlu-schema/
-├── pictonet-nlu-1.0.schema.json     # Canonical JSON Schema
-├── types/
-│   └── pictonet-nlu.d.ts            # TypeScript declarations
-├── tests/
-│   ├── valid/                       # Valid test documents
-│   └── invalid/                     # Expected failures
-├── test-runner.js                   # Node-based validator
-└── README.md
-
-
 ## Licence
 
 Released under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE) licence.
