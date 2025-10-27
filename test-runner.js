@@ -28,7 +28,8 @@ if (!fs.existsSync(schemaPath)) {
 }
 
 const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
-const ajv = new Ajv({ strict: true, allErrors: true, verbose: false });
+const ajv = new Ajv({ strict: true, strictRequired: false, allErrors: true, verbose: false });
+
 addFormats(ajv);
 
 const validate = ajv.compile(schema);

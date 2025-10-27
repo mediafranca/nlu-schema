@@ -60,25 +60,37 @@
       "type": "array",
       "description": "Frame-semantic analysis units.",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/FrameObject" }
+      "items": {
+        "$ref": "#/$defs/FrameObject"
+      }
     },
     "nsm_explictations": {
       "type": "object",
       "description": "NSM primes or paraphrases keyed by concept label (preferred key).",
-      "additionalProperties": { "type": "string" },
+      "additionalProperties": {
+        "type": "string"
+      },
       "default": {},
       "deprecated": false
     },
     "NSM_explictations": {
       "type": "object",
       "description": "Legacy/alternate key for NSM content (accepted for compatibility).",
-      "additionalProperties": { "type": "string" },
+      "additionalProperties": {
+        "type": "string"
+      },
       "default": {},
       "deprecated": true
     },
-    "logical_form": { "$ref": "#/$defs/LogicalForm" },
-    "pragmatics": { "$ref": "#/$defs/Pragmatics" },
-    "visual_guidelines": { "$ref": "#/$defs/VisualGuidelines" }
+    "logical_form": {
+      "$ref": "#/$defs/LogicalForm"
+    },
+    "pragmatics": {
+      "$ref": "#/$defs/Pragmatics"
+    },
+    "visual_guidelines": {
+      "$ref": "#/$defs/VisualGuidelines"
+    }
   },
   "$defs": {
     "FrameObject": {
@@ -100,7 +112,9 @@
           "type": "object",
           "description": "Map of frame elements to role fillers.",
           "minProperties": 1,
-          "additionalProperties": { "$ref": "#/$defs/RoleFiller" }
+          "additionalProperties": {
+            "$ref": "#/$defs/RoleFiller"
+          }
         },
         "id": {
           "type": "string",
@@ -131,11 +145,22 @@
             "Other"
           ]
         },
-        "ref": { "type": "string" },
-        "surface": { "type": "string" },
-        "lemma": { "type": "string" },
-        "definiteness": { "type": "string", "enum": ["definite", "indefinite", "unspecified"] },
-        "ref_frame": { "type": "string" }
+        "ref": {
+          "type": "string"
+        },
+        "surface": {
+          "type": "string"
+        },
+        "lemma": {
+          "type": "string"
+        },
+        "definiteness": {
+          "type": "string",
+          "enum": ["definite", "indefinite", "unspecified"]
+        },
+        "ref_frame": {
+          "type": "string"
+        }
       }
     },
     "LogicalForm": {
@@ -143,39 +168,69 @@
       "unevaluatedProperties": false,
       "required": ["event"],
       "properties": {
-        "event": { "type": "string" },
-        "modality": { "type": "string" },
-        "negation": { "type": "boolean" },
+        "event": {
+          "type": "string"
+        },
+        "modality": {
+          "type": "string"
+        },
+        "negation": {
+          "type": "boolean"
+        },
         "aspect": {
           "type": "string",
           "enum": ["none", "progressive", "perfective", "habitual", "inceptive", "custom"]
         },
-        "tense": { "type": "string", "enum": ["past", "present", "future", "unspecified"] }
+        "tense": {
+          "type": "string",
+          "enum": ["past", "present", "future", "unspecified"]
+        }
       }
     },
     "Pragmatics": {
       "type": "object",
       "unevaluatedProperties": false,
       "properties": {
-        "politeness": { "type": "string", "enum": ["polite", "neutral", "impolite"] },
-        "formality": { "type": "string", "enum": ["informal", "neutral", "formal"] },
+        "politeness": {
+          "type": "string",
+          "enum": ["polite", "neutral", "impolite"]
+        },
+        "formality": {
+          "type": "string",
+          "enum": ["informal", "neutral", "formal"]
+        },
         "expected_response": {
           "type": "string",
           "enum": ["compliance", "refusal", "acknowledgment", "question", "silence", "other"]
         },
-        "urgency": { "type": "string", "enum": ["low", "medium", "high"] },
-        "speaker_stance": { "type": "string" }
+        "urgency": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "speaker_stance": {
+          "type": "string"
+        }
       }
     },
     "VisualGuidelines": {
       "type": "object",
       "unevaluatedProperties": false,
       "properties": {
-        "focus_actor": { "type": "string" },
-        "secondary_actor": { "type": "string" },
-        "action_core": { "type": "string" },
-        "object_core": { "type": "string" },
-        "context": { "type": "string" },
+        "focus_actor": {
+          "type": "string"
+        },
+        "secondary_actor": {
+          "type": "string"
+        },
+        "action_core": {
+          "type": "string"
+        },
+        "object_core": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
         "temporal": {
           "type": "string",
           "enum": ["immediate", "near_future", "future", "past", "habitual", "unspecified"]
@@ -191,11 +246,32 @@
       }
     }
   },
-  "allOf": [
-    {
-      "if": { "type": "object", "required": ["metadata"] },
-      "then": { "properties": { "speech_act": false, "intent": false } },
-      "description": "Prefer `metadata.speech_act` and `metadata.intent`. Top-level duplicates are disallowed."
+  "allOf": [{
+    "if": {
+      "type": "object",
+      "properties": {
+        "metadata": {}
+      },
+      "required": ["metadata"]
+    },
+    "then": {
+      "not": {
+        "anyOf": [{
+            "type": "object",
+            "properties": {
+              "speech_act": {}
+            },
+            "required": ["speech_act"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "intent": {}
+            },
+            "required": ["intent"]
+          }
+        ]
+      }
     }
-  ]
+  }]
 }
