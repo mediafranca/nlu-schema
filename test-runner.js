@@ -16,7 +16,7 @@
 import fs from "fs";
 import path from "path";
 import { globSync } from "glob";
-import Ajv from "ajv";
+import Ajv from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 
 const base = path.resolve(process.cwd());
