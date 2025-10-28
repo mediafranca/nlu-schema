@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://pictos.net/schemas/pictonet-nlu-1.0.schema.json",
-  "title": "PictoNet-NLU-Schema v1.0",
+  "$id": "https://pictos.net/schemas/pictonet-nlu-1.0.1.schema.json",
+  "title": "PictoNet-NLU-Schema v1.0.1",
   "description": "Cross-modal semantic contract between the NLU front-end and the SVG compiler.",
   "type": "object",
   "unevaluatedProperties": false,
@@ -64,7 +64,7 @@
         "$ref": "#/$defs/FrameObject"
       }
     },
-    "nsm_explictations": {
+    "nsm_explications": {
       "type": "object",
       "description": "NSM primes or paraphrases keyed by concept label (preferred key).",
       "additionalProperties": {
@@ -73,9 +73,10 @@
       "default": {},
       "deprecated": false
     },
-    "NSM_explictations": {
+    "NSM_explications": {
       "type": "object",
       "description": "Legacy/alternate key for NSM content (accepted for compatibility).",
+      "$comment": "Use `nsm_explications`. This legacy key will be removed in v2.",
       "additionalProperties": {
         "type": "string"
       },
@@ -118,7 +119,8 @@
         },
         "id": {
           "type": "string",
-          "description": "Optional local ID for cross-referencing between frames."
+          "description": "Optional local ID for cross-referencing between frames.",
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
         }
       }
     },
@@ -126,6 +128,13 @@
       "type": "object",
       "description": "Participant, object, or event filling a frame role.",
       "unevaluatedProperties": false,
+      "required": ["type"],
+      "anyOf": [
+        { "required": ["ref"] },
+        { "required": ["surface"] },
+        { "required": ["lemma"] },
+        { "required": ["ref_frame"] }
+      ],
       "properties": {
         "type": {
           "type": "string",
@@ -146,20 +155,24 @@
           ]
         },
         "ref": {
-          "type": "string"
+          "type": "string",
+          "description": "External or discourse reference ID."
         },
         "surface": {
-          "type": "string"
+          "type": "string",
+          "description": "Surface string span."
         },
         "lemma": {
-          "type": "string"
+          "type": "string",
+          "description": "Canonical lemma."
         },
         "definiteness": {
           "type": "string",
           "enum": ["definite", "indefinite", "unspecified"]
         },
         "ref_frame": {
-          "type": "string"
+          "type": "string",
+          "description": "ID of another FrameObject this filler points to."
         }
       }
     },
@@ -237,6 +250,7 @@
         },
         "salience": {
           "type": "object",
+          "$comment": "Keys SHOULD be FrameObject ids or role labels; values are weights in [0,1].",
           "additionalProperties": {
             "type": "number",
             "minimum": 0,
@@ -245,33 +259,5 @@
         }
       }
     }
-  },
-  "allOf": [{
-    "if": {
-      "type": "object",
-      "properties": {
-        "metadata": {}
-      },
-      "required": ["metadata"]
-    },
-    "then": {
-      "not": {
-        "anyOf": [{
-            "type": "object",
-            "properties": {
-              "speech_act": {}
-            },
-            "required": ["speech_act"]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "intent": {}
-            },
-            "required": ["intent"]
-          }
-        ]
-      }
-    }
-  }]
+  }
 }
