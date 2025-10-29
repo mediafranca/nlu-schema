@@ -16,15 +16,15 @@
     {
       "id": "f2",
       "frame_name": "Warning",
-      "lexical_unit": "don't",
+      "lexical_unit": "do not",
       "roles": {
         "Speaker": { "type": "Speaker", "ref": "speaker", "surface": "(implicit)" },
         "Addressee": { "type": "Addressee", "ref": "you", "surface": "you" },
-        "Risk": { "type": "Object", "lemma": "burn", "surface": "burns" }
+        "Risk": { "type": "Event", "lemma": "burn", "surface": "burns" }
       }
     }
   ],
-  "nsm_explictations": {
+  "nsm_explications": {
     "NOT": "This something must not happen.",
     "TOUCH": "Someone's hand is on something for a short time.",
     "STOVE": "Something in a house, people use it to make food hot.",
