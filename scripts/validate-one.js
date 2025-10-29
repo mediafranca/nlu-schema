@@ -19,7 +19,7 @@ if (!file) {
 }
 
 const base = process.cwd();
-const schemaPath = path.join(base, "pictonet-nlu-1.0.schema.json");
+const schemaPath = path.join(base, "pictonet-nlu-1.0.1.schema.json");
 
 if (!fs.existsSync(schemaPath)) {
   console.error("❌ Schema not found:", schemaPath);
