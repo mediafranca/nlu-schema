@@ -10,11 +10,11 @@ It bridges complementary traditions in linguistic semantics and visual cognition
 
 | Layer | Theoretical basis | Schema component |
 |-------|-------------------|------------------|
-| Speech Act & Intent | Austin · Searle · ISO 24617-2 | `metadata.speech_act`, `metadata.intent` |
+| Speech Act & Intent | Austin · Searle · ISO 24617-2:2020 | `metadata.speech_act`, `metadata.intent` |
 | Frame Semantics | Fillmore · FrameNet | `frames[*].roles` |
 | Logical Representation | AMR · MRS | `logical_form` |
 | Semantic Primes | Wierzbicka · Goddard (NSM) | `nsm_explications` |
-| Pragmatics | Brown & Levinson · ISO 24617-2 | `pragmatics` |
+| Pragmatics | Brown & Levinson · ISO 24617-2:2020 | `pragmatics` |
 | Visual Grounding | Scene Graphs · AAC pictography | `visual_guidelines` |
 
 Each utterance processed through PictoNet’s NLU front-end is serialised as a single JSON object conforming to this schema.  
