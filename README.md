@@ -102,4 +102,4 @@ Future minor versions will retain structural compatibility; major revisions may 
 
 Released under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE) licence.  
 You are free to copy, modify, and redistribute this schema with attribution to  
-**Herbert Spencer González · [mediafranca.org](https://mediafranca.net)**
+**[Herbert Spencer González](https://herbertspencer.net)**
