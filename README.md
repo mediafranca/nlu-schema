@@ -1,4 +1,4 @@
-# PictoNet NLU Schema · v1.0.1
+# PictoNet NLU Schema · v0.0.1
 
 **PictoNet NLU Schema** defines a structured contract between the *Natural Language Understanding (NLU) front-end* and the *SVG compiler* within the [PictoNet](https://pictos.net) ecosystem.  
 It encodes communicative intent, semantic roles, logical form, and visual grounding cues — allowing human utterances to be transformed into cognitively accessible pictograms.
